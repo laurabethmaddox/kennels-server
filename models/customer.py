@@ -1,8 +1,8 @@
 class Customer():
 
-    def __init__(self, id, name, status):
+    def __init__(self, id, name, address, email = "", password = ""):
         self.id = id
         self.name = name
-        self.status = status
-
-new_customer = Customer(1, "Stephanie", "At Store")
+        self.address = address
+        self.email = email
+        self.password = password
