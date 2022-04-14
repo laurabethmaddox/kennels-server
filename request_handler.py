@@ -1,8 +1,8 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
-from views import get_all_animals, get_single_animal, get_animals_by_location, get_animals_by_status, delete_animal, update_animal
+from views import get_all_animals, get_single_animal, get_animals_by_location, get_animals_by_status, delete_animal, update_animal, create_animal
 from views import get_all_customers, get_single_customer, get_customers_by_email, delete_customer, update_customer
-from views import get_all_employees, get_single_employee, get_employees_by_location, delete_employee, update_employee
+from views import get_all_employees, get_single_employee, get_employees_by_location, delete_employee, update_employee, save_employee
 from views import get_all_locations, get_single_location, delete_location, update_location
 
 # Here's a class. It inherits from another class.
@@ -142,16 +142,16 @@ class HandleRequests(BaseHTTPRequestHandler):
         (resource, id) = self.parse_url(self.path)
 
         # Initialize new animal
-        # new_animal = None
+        new_animal = None
 
         # Add a new animal to the list. Don't worry about
         # the orange squiggle, you'll define the create_animal
         # function next.
-        # if resource == "animals":
-        #     new_animal = create_animal(post_body)
+        if resource == "animals":
+            new_animal = create_animal(post_body)
 
         #     # Encode the new animal and send in response
-        #     self.wfile.write(f"{new_animal}".encode())
+            self.wfile.write(f"{new_animal}".encode())
 
         # new_location = None
 
@@ -160,12 +160,12 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         #     self.wfile.write(f"{new_location}".encode())
 
-        # new_employee = None
+        new_employee = None
 
-        # if resource == "employees":
-        #     new_employee = create_employee(post_body)
+        if resource == "employees":
+            new_employee = save_employee(post_body)
 
-        #     self.wfile.write(f"{new_employee}".encode())
+            self.wfile.write(f"{new_employee}".encode())
 
         # new_customer = None
 
